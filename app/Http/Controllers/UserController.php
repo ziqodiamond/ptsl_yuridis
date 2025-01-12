@@ -57,7 +57,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email',
             'role' => 'nullable|string',
             'password' => 'nullable|string|min:8',
@@ -67,7 +67,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         // Update fields
-        $user->name = $request->nama;
+        $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;
 
@@ -81,7 +81,7 @@ class UserController extends Controller
     }
 
     // Delete user
-    public function delete($id)
+    public function destroy($id)
     {
         // Temukan user berdasarkan ID
         $user = User::findOrFail($id);

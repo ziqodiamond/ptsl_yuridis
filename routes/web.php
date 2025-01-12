@@ -14,7 +14,7 @@ use App\Http\Controllers\BerkasAdminController;
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('beranda');
     Route::get('/input-berkas', [BerkasController::class, 'index'])->name('berkas');
-    Route::get('/input-berkas/store', [BerkasController::class, 'store'])->name('berkas.store');
+    Route::post('/input-berkas/store', [BerkasController::class, 'store'])->name('berkas.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -27,15 +27,16 @@ Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->group(func
     Route::prefix('berkas')->group(function () {
         Route::get('/', [BerkasAdminController::class, 'index'])->name('admin.berkas');
         Route::post('/store', [BerkasAdminController::class, 'store'])->name('admin.berkas.store');
-        Route::get('/{id}/edit', [BerkasAdminController::class, 'edit'])->name('admin.berkas.edit');
+        Route::put('/{id}/edit', [BerkasAdminController::class, 'edit'])->name('admin.berkas.update');
         Route::delete('/{id}', [BerkasAdminController::class, 'destroy'])->name('admin.berkas.destroy');
+        Route::post('/cetak', [BerkasAdminController::class, 'cetak'])->name('admin.berkas.cetak');
     });
 
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user');
         Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');
-        Route::get('/{user}/edit', [UserController::class, 'edit'])->name('admin.user.edit');
-        Route::delete('/{user}', [UserController::class, 'destroy'])->name('admin.user.destroy');
+        Route::put('/{id}/update', [UserController::class, 'update'])->name('admin.user.update');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
     });
 });
 

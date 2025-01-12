@@ -26,6 +26,20 @@
     <div class="min-h-full">
         @include('components.sidebar')
         <main class="flex-1 p-5 sm:ml-64 bg-gray-100 text-gray-900">
+            @if (session('success'))
+                <script>
+                    alert('{{ session('success') }}');
+                </script>
+            @endif
+
+            @if ($errors->any())
+                <script>
+                    alert(
+                        'Terjadi kesalahan:'
+                        {{ implode(', ', $errors->all()) }}
+                    );
+                </script>
+            @endif
 
 
             {{-- <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8"> --}}

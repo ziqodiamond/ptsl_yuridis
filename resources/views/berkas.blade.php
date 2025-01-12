@@ -1,6 +1,6 @@
 <x-layout>
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold mb-4">Form Pengajuan Berkas</h1>
+        <h1 class="text-2xl font-bold mb-4">Form Berkas</h1>
         <form action="{{ route('berkas.store') }}" method="POST">
             @csrf
             <div class="mb-4">
